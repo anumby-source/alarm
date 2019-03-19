@@ -1,0 +1,147 @@
+"#": "passer ce fichier a travers tool/build_status_from_tpl.py"
+{
+   "#": "la cle unique MQTT donnée par la passerelle zigbee",
+   "0x00158d00056124xx:sensor": 
+   {
+      "#": "type d'objet : DO=Detecteur Ouverture",
+      "type": "DO",
+      "model": "Xiaomi",
+      "#": "description de l'objet",
+      "description": "fenetre S-O N0",
+      "#": "emplacement du capteur",
+      "location": "Salle de bain",
+      "#": "tenir compte de capteur pour les alertes",
+      "isenabled":false,
+      "#": "notion de zone de protection, P=perimetrique",
+      "zone": "AP",
+      "#": "Temporisation sur cet equipement au déclenchement ouverture ?",
+      "temporisation": false,
+      "#": "timestamp derniere notification",
+      "date_activity": "??",
+      "#": "#equipement actif (s'est manifesté depuis temps <1h) à calculer en fonction du PL",    
+      "isalive": "??",
+      "#": "script externe a lancer en cas d'evenement (avec variables d'environnement positionnees)",
+      "external_action": "do.py",
+      "#": "mode d'execution du script externe: synchrone ou asynchrone",
+      "external_action_mode_synchronous": "True",
+ 
+      "#": "liste des champs a archiver en base"
+      "fields_to_save": ["date_activity","contact","voltage","battery","linkquality"],
+      "#": "remontee du payload (PL)", 
+      "contact": "??",
+      "voltage": "??",
+      "battery": "??",
+      "linkquality":"??"
+      "#": "fin remontee du payload"  
+   },
+
+   "0x00158d00045193eb:sensor": 
+   {
+      "type": "DO",
+      "model": "Xiaomi",
+      "description": "fenetre S-E N0",
+      "location": "Salon",
+      "isenabled":true,
+      "zone": "ABP",
+      "perimeter": true,
+      "temporisation": false,
+      "date_activity": "??",
+      "isalive": "??",
+
+      "fields_to_save": ["date_activity","contact","voltage","battery","linkquality"],
+      "contact": "??",
+      "voltage": "??",
+      "battery": "??",
+      "linkquality":"??"
+   },
+
+
+   "0x00158d000255acd4:sensor": 
+   {
+      "type": "DO",
+      "model": "Xiaomi",
+      "description": "Porte appenti",
+      "location": "Appenti",
+      "isenabled":true,
+      "zone": "BP",
+      "temporisation": false,
+      "date_activity": "??",
+      "isalive": "??",
+      "external_action": "notification_sms.py",
+      "external_action_mode_synchronous": "False",
+
+      "fields_to_save": ["date_activity","contact","voltage","battery","linkquality"],
+      "contact": "??",
+      "voltage": "??",
+      "battery": "??",
+      "linkquality":"??"
+   },
+
+   
+   "0x00158d0002453a2f:sensor":
+   {
+      "type": "PIR",
+      "model": "Xiaomi",
+      "description": "Garage PIR",
+      "location": "Garage",
+      "isenabled":true,
+      "zone": "C",
+      "temporisation": false,
+      "date_activity": "??",
+      "isalive": "??", 
+
+      "fields_to_save": ["date_activity","occupancy","voltage","battery","linkquality"],
+      "occupancy":"??",
+      "linkquality":"??",
+      "battery":"??",
+      "voltage":"??"
+   },
+  
+   "0x00158d0001e4fb25:sensor":
+   {
+     "type": "BUTTON",
+     "model": "Xiaomi",
+     "description": "Sonnette",
+     "location": "chambre",
+     "isenabled":true,
+     "date_activity": "??",
+     "isalive": "??",
+     "external_action": "on_button_onoff.py",
+     "external_action_mode_synchronous": "False",
+  
+     "fields_to_save": ["date_activity","voltage","battery","linkquality"],
+     "battery":"??",
+     "voltage":"??",
+     "linkquality":"??"
+   },
+
+   "0x0000010000000001:sensor": 
+   {
+      "type": "DO",
+      "model": "arduinocustom",
+      "description": "Porte garage",
+      "location": "Garage",
+      "isenabled":true,
+      "zone": "CP",
+      "temporisation": false,
+      "date_activity": "??",
+      "isalive": "??",
+      "external_action": "notify_sms.py",
+      "external_action_mode_synchronous": "False",
+
+      "fields_to_save": ["date_activity","contact"],
+      "contact": "??"
+   },
+
+
+   "#": "conserver les events a consommer par le client",
+   "sensor_status:events":{},
+   "#": "autres events",
+   "global_status:events":{},
+   "global_status":
+   {
+      "IsArmed": "??",
+      "ZoneActivation": "??"
+   }
+
+}

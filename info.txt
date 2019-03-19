@@ -1,0 +1,77 @@
+###############################################
+A/ Installation environnement virtuel
+
+###
+### environnement virtuel python ###
+###
+> cd ~/Documents/python-backend
+(#python2)
+(> pip install virtualenv)
+
+(#creation environnement virtuel python2)
+(> virtualenv -p /usr/bin/python2 myprojet)
+
+#creation environnement virtuel python3
+python3 -m venv /home/mikou/Documents/python-backend/myprojet
+
+#activation de l'environnement virtuel
+> source  myprojet/bin/activate
+> python -V
+> python -m pip install --upgrade pip
+> pip install paho-mqtt
+
+#quitter l'environnement virtuel
+> (my_project) [server]$ deactivate
+
+
+###
+### redis ###
+###
+#redis-lite (standalone)
+pip install redislite
+
+###
+### doc redis
+###
+sametmax.com/redis-pourqxuoi-et-comment/
+
+###############################################
+B/ commandes redis en CLI
+
+#lister les cles
+KEYS "*"
+
+#depiler
+LPOP 0x00158d0002413a2f:events
+redis /tmp/tmp0ku5j88f/redis.socket> LPOP 0x00158d0002413a2f:events
+"{ \"event_ts\":1552424816, \"type\": \"PIR\", \"model\": \"Xiaomi\", \"data\":{\"occupancy\":false,\"linkquality\":99,\"battery\":100,\"voltage\":3025} }"
+
+#depiler bloquant par la gauche
+BLPOP sensor_status:events global_status:events [liste3]..  0
+
+#lire un hash complet
+HGETALL 0x00158d0002413a2f
+
+#lister une liste
+LRANGE 0x00158d0001e7fb25:events 0 100
+
+###############################################
+C/ redis python doc
+https://redis-py.readthedocs.io/en/latest/
+
+###############################################
+D/ chprompt
+
+change le prompt bash
+###############################################
+E/ exemple simulation
+
+mosquitto_pub  -h 10.0.96.1 -p 1883 -t 'zigbee2mqtt/0x00158d0001e7fb25' -m '{"battery":100,"voltage":3022,"linkquality":152}'
+
+#########################################################################################################
+[TODO]
+test periodique
+etat des capteurs
+controle des batteries avec alerte
+SMS
+detection brouillage
